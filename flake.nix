@@ -15,7 +15,7 @@
     let
       items = groupBy (s: elemAt s.name depth) secrets-list;
     in mapAttrs (_: item:
-      if length item == 1
+      if length item == 1 && depth + 1 == length (elemAt item 0).name
       then let value = elemAt item 0; in {
         inherit (value) file; name = concatStringsSep "/" value.name; 
       }
